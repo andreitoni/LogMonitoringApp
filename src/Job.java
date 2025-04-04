@@ -41,7 +41,9 @@ public class Job {
                     Job finalJob = jobMap.get(pID);
                     Duration duration = Duration.between(finalJob.startTime, time);
 
-                    if (duration.toMinutes() >= 5 && duration.toMinutes() < 10) {
+                    if(duration.isNegative()){
+                        message = "Duration is negative - something is wrong";
+                    } else if(duration.toMinutes() >= 5 && duration.toMinutes() < 10) {
                         message = "WARNING";
                     } else if (duration.toMinutes() >= 10) {
                         message = "ERROR";
